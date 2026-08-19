@@ -1,0 +1,62 @@
+# Machine-readable copy of reports/research/WATCHLIST.md.
+# cohort: A = Software & Internet, B = Hardware/Semiconductor/Space, C = IT Services & Infrastructure
+# scoring_excluded: a flat list of tickers, NOT a cohort. These tickers stay in whichever
+# cohort they're listed under above (they remain in the research/news universe consumed by
+# pipeline.config.load_watchlist_tickers()) but must be dropped from the financial-scoring
+# cohort composition consumed by techinves.watchlist.load_watchlist()/score_watchlist() — see
+# ADR 0005 §5. Loaders must special-case this key and never treat it as a fourth cohort.
+# Keep this file and reports/research/WATCHLIST.md in sync manually when the watchlist changes.
+
+A:
+  - MSFT
+  - ADBE
+  - CRM
+  - NOW
+  - INTU
+  - WDAY
+  - SNOW
+  - META
+  - GOOGL
+  - SHOP
+  - AMZN
+  - PLTR
+
+B:
+  - AAPL
+  - NVDA
+  - AMD
+  - INTC
+  - QCOM
+  - AVGO
+  - TXN
+  - MU
+  - AMAT
+  - LRCX
+  - TSM
+  - ASML
+  - RKLB
+  - ASTS
+  - SPCX
+  - GLW
+  - CRWV
+  - ARM
+  - SMCI
+  - VRT
+
+C:
+  - ACN
+  - IBM
+  - ORCL
+  - CSCO
+  - DELL
+  - HPE
+  - NET
+  - DDOG
+  - CRWD
+  - FTNT
+  - PANW
+
+scoring_excluded:
+  - RKLB
+  - ASTS
+  - SPCX

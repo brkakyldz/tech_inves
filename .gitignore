@@ -1,0 +1,39 @@
+.env
+.cache/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+dev.db
+dev.db.bak-*
+data/covered_events.json
+.claude/active-agents.md
+data/blocked_drafts/
+data/pipeline_checkpoints.sqlite3*
+
+# Generated scoring output, written to the repo root by `techinves-score`.
+# The bare `scores.json` rule alone let the dated variants
+# (`scores_2026-W33.json`) slip into git -- 236 KB of regenerable data
+# carrying a week identity ADR 0010 retired. Both rules are root-anchored on
+# purpose: `front-end/lib/data/scores.json` is a tracked demo fixture, not
+# generated output, and an unanchored pattern would claim it too.
+/scores.json
+/scores_*.json
+
+# Local run logs, written to the repo root by the pipeline/score CLIs
+# (pipeline_run*.log, run_live*.log, score_run.log).
+/*.log
+
+# Ad-hoc database and data-file backups taken around migrations
+# (data/dev_backup_pre_faz1_migration.db, data/*_backup_*.json).
+data/*backup*.json
+data/*backup*.db
+
+# The agent working-memory layer (agent reports, syntheses, ADRs, backlog)
+# is local-only: it drives the development workflow on this machine and is
+# deliberately not part of the published repo.
+/reports/

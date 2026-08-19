@@ -1,0 +1,1282 @@
+[
+  {
+    "ticker": "AAPL",
+    "companyName": "Apple",
+    "cohort": "B",
+    "compositeScore": 49.3,
+    "band": "Moderate",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 62.2,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 16.5,
+        "weight": 0.2
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 60.7,
+        "weight": 0.35
+      },
+      {
+        "name": "Financial Health",
+        "score": 46.0,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 51.2,
+    "coveragePct": 0.95,
+    "lowReliability": false
+  },
+  {
+    "ticker": "ACN",
+    "companyName": "Accenture",
+    "cohort": "C",
+    "compositeScore": 57.4,
+    "band": "Moderate",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 97.9,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 12.6,
+        "weight": 0.25
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 50.2,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 73.6,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 68.8,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "ADBE",
+    "companyName": "Adobe",
+    "cohort": "A",
+    "compositeScore": 69.3,
+    "band": "Good",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 91.6,
+        "weight": 0.2
+      },
+      {
+        "name": "Growth",
+        "score": 39.2,
+        "weight": 0.3
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 83.1,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 71.7,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 96.2,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "AMAT",
+    "companyName": "Applied Materials",
+    "cohort": "B",
+    "compositeScore": 44.6,
+    "band": "Weak",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 47.2,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 10.7,
+        "weight": 0.2
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 54.0,
+        "weight": 0.35
+      },
+      {
+        "name": "Financial Health",
+        "score": 59.0,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 36.2,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "AMD",
+    "companyName": "Advanced Micro Devices",
+    "cohort": "B",
+    "compositeScore": 44.4,
+    "band": "Weak",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 24.4,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 75.7,
+        "weight": 0.2
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 31.9,
+        "weight": 0.35
+      },
+      {
+        "name": "Financial Health",
+        "score": 60.2,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 33.8,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "AMZN",
+    "companyName": "Amazon.com",
+    "cohort": "A",
+    "compositeScore": 40.5,
+    "band": "Weak",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 60.9,
+        "weight": 0.2
+      },
+      {
+        "name": "Growth",
+        "score": 24.9,
+        "weight": 0.3
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 41.6,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 41.9,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 18.8,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "ARM",
+    "companyName": "Arm Holdings (ADR)",
+    "cohort": "B",
+    "compositeScore": 45.6,
+    "band": "Moderate",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 10.6,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 59.6,
+        "weight": 0.2
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 40.5,
+        "weight": 0.35
+      },
+      {
+        "name": "Financial Health",
+        "score": 84.5,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 41.2,
+    "coveragePct": 0.95,
+    "lowReliability": false
+  },
+  {
+    "ticker": "ASML",
+    "companyName": "ASML Holding (ADR)",
+    "cohort": "B",
+    "compositeScore": 63.7,
+    "band": "Moderate",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 44.8,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 66.2,
+        "weight": 0.2
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 70.8,
+        "weight": 0.35
+      },
+      {
+        "name": "Financial Health",
+        "score": 72.4,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 86.2,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "AVGO",
+    "companyName": "Broadcom",
+    "cohort": "B",
+    "compositeScore": 48.9,
+    "band": "Moderate",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 28.6,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 80.4,
+        "weight": 0.2
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 57.5,
+        "weight": 0.35
+      },
+      {
+        "name": "Financial Health",
+        "score": 27.5,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 46.2,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "CRM",
+    "companyName": "Salesforce",
+    "cohort": "A",
+    "compositeScore": 49.3,
+    "band": "Moderate",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 80.9,
+        "weight": 0.2
+      },
+      {
+        "name": "Growth",
+        "score": 29.8,
+        "weight": 0.3
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 52.0,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 42.7,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 48.8,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "CRWD",
+    "companyName": "CrowdStrike",
+    "cohort": "C",
+    "compositeScore": 36.6,
+    "band": "Weak",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 14.7,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 66.1,
+        "weight": 0.25
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 34.1,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 30.6,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 8.8,
+    "coveragePct": 0.9,
+    "lowReliability": false
+  },
+  {
+    "ticker": "CRWV",
+    "companyName": "CoreWeave",
+    "cohort": "B",
+    "compositeScore": 34.7,
+    "band": "Weak",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 41.0,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 68.5,
+        "weight": 0.2
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 27.4,
+        "weight": 0.35
+      },
+      {
+        "name": "Financial Health",
+        "score": 5.9,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 6.2,
+    "coveragePct": 0.9,
+    "lowReliability": false
+  },
+  {
+    "ticker": "CSCO",
+    "companyName": "Cisco Systems",
+    "cohort": "C",
+    "compositeScore": 39.8,
+    "band": "Weak",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 65.2,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 13.7,
+        "weight": 0.25
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 45.7,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 31.9,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 11.2,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "DDOG",
+    "companyName": "Datadog",
+    "cohort": "C",
+    "compositeScore": 40.1,
+    "band": "Weak",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 14.6,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 79.5,
+        "weight": 0.25
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 39.3,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 23.8,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 13.8,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "DELL",
+    "companyName": "Dell Technologies",
+    "cohort": "C",
+    "compositeScore": 42.5,
+    "band": "Weak",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 76.0,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 25.9,
+        "weight": 0.25
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 37.5,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 28.7,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 26.2,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "FTNT",
+    "companyName": "Fortinet",
+    "cohort": "C",
+    "compositeScore": 60.1,
+    "band": "Moderate",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 43.9,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 45.6,
+        "weight": 0.25
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 78.8,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 70.2,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 83.8,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "GLW",
+    "companyName": "Corning",
+    "cohort": "B",
+    "compositeScore": 42.9,
+    "band": "Weak",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 50.4,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 41.2,
+        "weight": 0.2
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 35.9,
+        "weight": 0.35
+      },
+      {
+        "name": "Financial Health",
+        "score": 47.5,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 28.7,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "GOOGL",
+    "companyName": "Alphabet",
+    "cohort": "A",
+    "compositeScore": 56.2,
+    "band": "Moderate",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 55.5,
+        "weight": 0.2
+      },
+      {
+        "name": "Growth",
+        "score": 40.0,
+        "weight": 0.3
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 59.8,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 75.9,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 66.2,
+    "coveragePct": 0.9,
+    "lowReliability": false
+  },
+  {
+    "ticker": "HPE",
+    "companyName": "Hewlett Packard Enterprise",
+    "cohort": "C",
+    "compositeScore": 26.5,
+    "band": "Very Weak",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 47.4,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 22.0,
+        "weight": 0.25
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 17.4,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 19.4,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 3.8,
+    "coveragePct": 0.85,
+    "lowReliability": false
+  },
+  {
+    "ticker": "IBM",
+    "companyName": "IBM",
+    "cohort": "C",
+    "compositeScore": 41.2,
+    "band": "Weak",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 83.1,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 17.7,
+        "weight": 0.25
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 40.7,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 19.0,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 21.2,
+    "coveragePct": 0.65,
+    "lowReliability": false
+  },
+  {
+    "ticker": "INTC",
+    "companyName": "Intel",
+    "cohort": "B",
+    "compositeScore": 13.0,
+    "band": "Very Weak",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 24.6,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 3.0,
+        "weight": 0.2
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 10.2,
+        "weight": 0.35
+      },
+      {
+        "name": "Financial Health",
+        "score": 13.3,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 1.2,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "INTU",
+    "companyName": "Intuit",
+    "cohort": "A",
+    "compositeScore": 57.8,
+    "band": "Moderate",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 83.1,
+        "weight": 0.2
+      },
+      {
+        "name": "Growth",
+        "score": 51.8,
+        "weight": 0.3
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 56.3,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 43.7,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 73.8,
+    "coveragePct": 0.85,
+    "lowReliability": false
+  },
+  {
+    "ticker": "LRCX",
+    "companyName": "Lam Research",
+    "cohort": "B",
+    "compositeScore": 58.6,
+    "band": "Moderate",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 41.6,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 60.3,
+        "weight": 0.2
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 64.3,
+        "weight": 0.35
+      },
+      {
+        "name": "Financial Health",
+        "score": 68.1,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 76.2,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "META",
+    "companyName": "Meta Platforms",
+    "cohort": "A",
+    "compositeScore": 65.5,
+    "band": "Good",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 74.7,
+        "weight": 0.2
+      },
+      {
+        "name": "Growth",
+        "score": 58.7,
+        "weight": 0.3
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 71.9,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 57.1,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 91.2,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "MSFT",
+    "companyName": "Microsoft",
+    "cohort": "A",
+    "compositeScore": 58.7,
+    "band": "Moderate",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 63.3,
+        "weight": 0.2
+      },
+      {
+        "name": "Growth",
+        "score": 45.6,
+        "weight": 0.3
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 71.2,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 54.8,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 78.8,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "MU",
+    "companyName": "Micron Technology",
+    "cohort": "B",
+    "compositeScore": 45.2,
+    "band": "Moderate",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 20.5,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 73.4,
+        "weight": 0.2
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 39.5,
+        "weight": 0.35
+      },
+      {
+        "name": "Financial Health",
+        "score": 58.1,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 38.8,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "NET",
+    "companyName": "Cloudflare",
+    "cohort": "C",
+    "compositeScore": 40.2,
+    "band": "Weak",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 18.0,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 69.4,
+        "weight": 0.25
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 46.1,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 22.6,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 16.2,
+    "coveragePct": 0.842,
+    "lowReliability": false
+  },
+  {
+    "ticker": "NOW",
+    "companyName": "ServiceNow",
+    "cohort": "A",
+    "compositeScore": 59.1,
+    "band": "Moderate",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 52.4,
+        "weight": 0.2
+      },
+      {
+        "name": "Growth",
+        "score": 68.3,
+        "weight": 0.3
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 51.3,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 63.7,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 81.2,
+    "coveragePct": 0.95,
+    "lowReliability": false
+  },
+  {
+    "ticker": "NVDA",
+    "companyName": "NVIDIA",
+    "cohort": "B",
+    "compositeScore": 70.9,
+    "band": "Good",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 46.3,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 96.5,
+        "weight": 0.2
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 72.1,
+        "weight": 0.35
+      },
+      {
+        "name": "Financial Health",
+        "score": 73.9,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 98.8,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "ORCL",
+    "companyName": "Oracle",
+    "cohort": "C",
+    "compositeScore": 45.6,
+    "band": "Moderate",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 60.5,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 26.8,
+        "weight": 0.25
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 57.3,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 33.0,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 43.8,
+    "coveragePct": 0.85,
+    "lowReliability": false
+  },
+  {
+    "ticker": "PANW",
+    "companyName": "Palo Alto Networks",
+    "cohort": "C",
+    "compositeScore": 49.6,
+    "band": "Moderate",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 18.5,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 52.6,
+        "weight": 0.25
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 53.4,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 79.3,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 53.8,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "PLTR",
+    "companyName": "Palantir Technologies",
+    "cohort": "A",
+    "compositeScore": 64.2,
+    "band": "Moderate",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 12.7,
+        "weight": 0.2
+      },
+      {
+        "name": "Growth",
+        "score": 94.3,
+        "weight": 0.3
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 62.0,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 74.0,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 88.8,
+    "coveragePct": 0.95,
+    "lowReliability": false
+  },
+  {
+    "ticker": "QCOM",
+    "companyName": "QUALCOMM",
+    "cohort": "B",
+    "compositeScore": 57.7,
+    "band": "Moderate",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 91.7,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 27.1,
+        "weight": 0.2
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 57.6,
+        "weight": 0.35
+      },
+      {
+        "name": "Financial Health",
+        "score": 46.1,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 71.2,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "SHOP",
+    "companyName": "Shopify",
+    "cohort": "A",
+    "compositeScore": 52.4,
+    "band": "Moderate",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 27.3,
+        "weight": 0.2
+      },
+      {
+        "name": "Growth",
+        "score": 72.8,
+        "weight": 0.3
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 28.6,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 82.7,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 58.8,
+    "coveragePct": 0.95,
+    "lowReliability": false
+  },
+  {
+    "ticker": "SMCI",
+    "companyName": "Super Micro Computer",
+    "cohort": "B",
+    "compositeScore": 53.9,
+    "band": "Moderate",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 82.8,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 79.4,
+        "weight": 0.2
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 23.1,
+        "weight": 0.35
+      },
+      {
+        "name": "Financial Health",
+        "score": 45.9,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 61.3,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "SNOW",
+    "companyName": "Snowflake",
+    "cohort": "A",
+    "compositeScore": 54.6,
+    "band": "Moderate",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 37.1,
+        "weight": 0.2
+      },
+      {
+        "name": "Growth",
+        "score": 79.5,
+        "weight": 0.3
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 58.1,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 29.6,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 63.7,
+    "coveragePct": 0.842,
+    "lowReliability": false
+  },
+  {
+    "ticker": "TSM",
+    "companyName": "Taiwan Semiconductor (ADR)",
+    "cohort": "B",
+    "compositeScore": 67.7,
+    "band": "Good",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 44.3,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 72.0,
+        "weight": 0.2
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 75.3,
+        "weight": 0.35
+      },
+      {
+        "name": "Financial Health",
+        "score": 79.3,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 93.8,
+    "coveragePct": 0.9,
+    "lowReliability": false
+  },
+  {
+    "ticker": "TXN",
+    "companyName": "Texas Instruments",
+    "cohort": "B",
+    "compositeScore": 41.6,
+    "band": "Weak",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 44.1,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 19.4,
+        "weight": 0.2
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 50.7,
+        "weight": 0.35
+      },
+      {
+        "name": "Financial Health",
+        "score": 44.5,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 23.8,
+    "coveragePct": 0.9,
+    "lowReliability": false
+  },
+  {
+    "ticker": "VRT",
+    "companyName": "Vertiv",
+    "cohort": "B",
+    "compositeScore": 49.8,
+    "band": "Moderate",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 43.3,
+        "weight": 0.25
+      },
+      {
+        "name": "Growth",
+        "score": 67.4,
+        "weight": 0.2
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 51.4,
+        "weight": 0.35
+      },
+      {
+        "name": "Financial Health",
+        "score": 37.5,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 56.2,
+    "coveragePct": 1.0,
+    "lowReliability": false
+  },
+  {
+    "ticker": "WDAY",
+    "companyName": "Workday",
+    "cohort": "A",
+    "compositeScore": 43.7,
+    "band": "Weak",
+    "categories": [
+      {
+        "name": "Valuation",
+        "score": 67.4,
+        "weight": 0.2
+      },
+      {
+        "name": "Growth",
+        "score": 38.4,
+        "weight": 0.3
+      },
+      {
+        "name": "Profitability & Quality",
+        "score": 36.1,
+        "weight": 0.3
+      },
+      {
+        "name": "Financial Health",
+        "score": 39.4,
+        "weight": 0.2
+      }
+    ],
+    "sectorPercentile": 31.2,
+    "coveragePct": 0.75,
+    "lowReliability": false
+  }
+]

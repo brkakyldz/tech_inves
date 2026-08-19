@@ -1,0 +1,37 @@
+[
+  {
+    "slug": "2026-08-04-yari-iletken-kohortu-ayrisiyor",
+    "weekOf": "2026-08-04",
+    "title": "Yarı iletken kohortu ayrışıyor: güç talebi kazananları vs. döngü baskısı",
+    "excerpt": "Bu hafta B kohortunda (Donanım, Yarı İletken & Uzay) belirgin bir ayrışma görüyoruz: veri merkezi/AI hızlandırıcı talebine maruz kalan isimler kompozit skorlarını korurken, PC/kurumsal döngüye bağımlı isimlerde Karlılık & Kalite kategorisinde belirgin zayıflama var. A kohortunda (Yazılım & İnternet) büyüme metrikleri genel olarak yavaşlıyor ancak SBC-düzeltmeli FCF marjları sağlam kalmaya devam ediyor. Bu haftaki raporda 42 şirketlik takip listesinin tam skor tablosu, kategori bazlı kırılım ve öne çıkan üç şirketin detaylı analizini bulacaksınız.",
+    "highlightedTickers": ["NVDA", "MSFT", "INTC"]
+  },
+  {
+    "slug": "2026-07-28-bulut-guvenlik-marjlari",
+    "weekOf": "2026-07-28",
+    "title": "Bulut güvenlik isimlerinde marj genişlemesi: C kohortunun sessiz güçlenmesi",
+    "excerpt": "C kohortunda (IT Hizmetleri & Altyapı) güvenlik ve gözlemlenebilirlik odaklı isimlerde işletme marjı genişlemesi dikkat çekiyor. Değerleme kategorisinde hâlâ prim var, ancak Finansal Sağlık skorları geçen çeyreğe göre belirgin iyileşme gösteriyor. Bu hafta CRWD, DDOG ve NET'in kategori bazlı kırılımını karşılaştırıyoruz.",
+    "highlightedTickers": ["CRWD", "DDOG", "NET"]
+  },
+  {
+    "slug": "2026-07-21-yazilim-buyume-yavaslamasi",
+    "weekOf": "2026-07-21",
+    "title": "A kohortunda büyüme yavaşlaması: kaliteye kaçış mı?",
+    "excerpt": "Yazılım & İnternet kohortunda çeyreklik gelir büyümesi geneli itibariyle yavaşlarken, yüksek Karlılık & Kalite skoruna sahip isimler sektör yüzdelik sıralamasında konumlarını koruyor. Bu hafta MSFT, ADBE ve NOW üzerinden bu ayrışmayı inceliyoruz.",
+    "highlightedTickers": ["MSFT", "ADBE", "NOW"]
+  },
+  {
+    "slug": "2026-07-14-uzay-kohortu-erken-asama-riski",
+    "weekOf": "2026-07-14",
+    "title": "Erken aşama uzay isimlerinde kapsam riski: RKLB, ASTS, SPCX",
+    "excerpt": "B kohortu içindeki erken aşama/pre-revenue-yakın isimlerde veri kapsamı (coverage %) düşük kalmaya devam ediyor; metodolojide öngörülen bu durum, kompozit skorların geniş güven aralığıyla okunması gerektiği anlamına geliyor. Bu hafta bu üç ismin skor kapsamını ve risk göstergelerini masaya yatırıyoruz.",
+    "highlightedTickers": ["RKLB", "ASTS", "SPCX"]
+  },
+  {
+    "slug": "2026-07-07-donanim-dongu-baskisi",
+    "weekOf": "2026-07-07",
+    "title": "Donanım tarafında döngü baskısı sürüyor",
+    "excerpt": "PC ve kurumsal donanım döngüsüne bağımlı isimlerde Büyüme kategorisi zayıf seyrini korurken, yarı iletken ekipman tarafında (AMAT, LRCX) sipariş verilerine dair erken toparlanma sinyalleri var. Bu haftaki raporda döngüsel isimlerin skor tarihçesini karşılaştırıyoruz.",
+    "highlightedTickers": ["INTC", "AMAT", "LRCX"]
+  }
+]

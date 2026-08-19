@@ -1,0 +1,67 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "techinves"
+version = "0.1.0"
+description = "TechInves composite financial scoring engine for US-listed technology companies"
+requires-python = ">=3.11"
+dependencies = [
+    "requests>=2.31",
+    "pydantic>=2.5",
+    "numpy>=1.26",
+    "python-dotenv>=1.0",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+api = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "sqlalchemy>=2.0",
+    "aiosqlite>=0.20",
+    "asyncpg>=0.29",
+    "alembic>=1.13",
+]
+api-dev = [
+    "techinves[api,dev]",
+    "httpx>=0.27",
+    "pytest-asyncio>=0.24",
+]
+pipeline = [
+    "langgraph>=1.2",
+    "langchain-core>=0.3",
+    "langchain-tavily>=0.2",
+    "langchain-openai>=0.2",
+    "sqlalchemy>=2.0",
+    # R23: checkpointer so a mid-run crash resumes instead of re-buying
+    # every research branch. langgraph-checkpoint-postgres additionally
+    # needs a psycopg binary/system libpq -- imported lazily
+    # (pipeline/checkpointer.py) so a sqlite-only environment isn't broken.
+    "langgraph-checkpoint-sqlite>=2.0",
+    "langgraph-checkpoint-postgres>=2.0",
+]
+
+[project.scripts]
+techinves-score = "techinves.cli:main"
+techinves-ingest = "techinves.api.ingest:main"
+techinves-seed-mock = "techinves.api.seed_mock:main"
+
+[tool.setuptools.packages.find]
+# Two roots on purpose: `techinves` lives under src/, `pipeline` at the repo
+# root. Since Faz 4 the installed package imports the pipeline at module scope
+# (`techinves.api.routers.runs` -> `pipeline.config`), so shipping only
+# `techinves` made `import techinves.api.main` fail from any CWD other than the
+# repo root. The include filter is what keeps `tests`/`alembic` -- also
+# importable packages at the root -- out of the distribution.
+where = ["src", "."]
+include = ["techinves*", "pipeline*"]
+namespaces = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"

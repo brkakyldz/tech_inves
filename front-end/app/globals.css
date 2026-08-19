@@ -1,0 +1,283 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-source-sans);
+  --font-serif: var(--font-fraunces);
+  --font-mono: var(--font-jetbrains-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  /* Categorical chart series (radar/line). Colorblind-safe 5-hue set
+     (IBM Carbon lineage), re-tuned in OKLCH so every stop clears WCAG
+     1.4.11's 3:1 non-text contrast against this project's real #ffffff
+     background -- see reports/research/2026-08-17_fe-dataviz-color.md
+     §1/§4 for derivation and the .dark values this project does NOT use
+     (dark mode was removed, see §7.1 of the design-system plan). */
+  --chart-1: oklch(0.63 0.12 76);   /* amber   #b27e23  3.56:1 */
+  --chart-2: oklch(0.64 0.19 42);   /* orange  #e65909  3.62:1 */
+  --chart-3: oklch(0.58 0.20 358);  /* magenta #cf327a  4.78:1 */
+  --chart-4: oklch(0.56 0.19 286);  /* purple  #705adc  5.02:1 */
+  --chart-5: oklch(0.60 0.16 266);  /* blue    #5379df  4.06:1 */
+
+  /* Sequential score ramp -- 5 stops, one continuous blue -> amber ->
+     red-orange OKLCH path, ordered best -> worst to match ScoreBand /
+     RiskBand's shared 5-tier contract (lib/scoreColor.ts). Deliberately
+     NOT the 3-band proposal in the dataviz research report: the code
+     defines 5 bands that mirror the scoring engine and must not drift.
+     Hue moves 250 -> 230 -> 80 -> 55 -> 25 (blue family for the two best
+     tiers, amber for the middle tier, orange/red-orange for the two worst)
+     so a CVD viewer reads *order*, not a red/green pass-fail pairing.
+     Lightness/chroma were tuned per-stop (not a single formula) so every
+     stop clears 4.5:1 against #ffffff -- amber and orange need the most
+     correction, same finding as the chart tokens above. Contrast ratios
+     computed locally with the WCAG relative-luminance formula (Ottosson
+     OKLCH->sRGB conversion), not assumed:
+       score-strong    #1f74bf  4.87:1
+       score-good      #0077a8  5.00:1
+       score-moderate  #9e6400  4.91:1
+       score-weak      #bc5000  4.90:1
+       score-very-weak #c92f33  5.33:1
+     "No data" (RiskBand only) stays --muted-foreground gray -- "we
+     couldn't measure this" must stay visually distinct from a bad score,
+     never a synonym for "Very Weak". */
+  --score-strong: oklch(0.55 0.14 250);
+  --score-strong-bg: oklch(0.97 0.03 250);
+  --score-strong-border: oklch(0.82 0.08 250);
+  --score-good: oklch(0.53 0.13 230);
+  --score-good-bg: oklch(0.97 0.03 230);
+  --score-good-border: oklch(0.82 0.08 230);
+  --score-moderate: oklch(0.55 0.15 80);
+  --score-moderate-bg: oklch(0.97 0.03 80);
+  --score-moderate-border: oklch(0.82 0.08 80);
+  --score-weak: oklch(0.56 0.17 55);
+  --score-weak-bg: oklch(0.97 0.03 55);
+  --score-weak-border: oklch(0.82 0.08 55);
+  --score-very-weak: oklch(0.55 0.19 25);
+  --score-very-weak-bg: oklch(0.97 0.03 25);
+  --score-very-weak-border: oklch(0.82 0.08 25);
+
+  /* Delta indicators -- blue/orange instead of red/green (dominant CVD
+     pattern is red-green confusion; also sidesteps the loss/gain meaning
+     red/green already carries in a financial context). Hue is never the
+     sole channel: consumers must keep the up/down arrow glyph too
+     (WCAG 1.4.1). Reuses score-strong/score-very-weak so "up" and "the
+     best score tier" share one blue, "down" and "the worst tier" share
+     one red-orange -- one vocabulary, not two. */
+  --delta-up: var(--score-strong);
+  --delta-down: var(--score-very-weak);
+
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* Motion tokens. Defined in :root rather than @theme inline: Tailwind
+     v4.3 tree-shakes @theme(inline) tokens that no utility class
+     references yet (verified empirically — --chart-1 and --radius-4xl,
+     both pre-existing and equally unreferenced, are absent from the
+     compiled CSS too). These are used directly via var(...) by Phase 5,
+     not through a generated utility, so :root is what actually ships them. */
+  --duration-emphasis: 180ms;
+  --duration-entrance: 320ms;
+  --duration-counter: 600ms;
+  --ease-entrance: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasis: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --stagger-step: 40ms;
+
+  /* Phase 4a -- Stripe-press editorial layout primitives (plan §7.2). Plain
+     :root, not @theme inline: Phase 1 found @theme inline tokens get
+     tree-shaken when no utility class references them yet; these are
+     consumed via var()/arbitrary values in the small utility set below, the
+     same pattern the motion tokens above already established.
+     --section-y is the section rhythm: sections separate by space, not
+     border-b rules (the old uniform py-16 + border-b is what this replaces).
+     --content-max-width is the page/grid canvas; --prose-measure (~65ch) is
+     a deliberately separate, narrower cap for running prose only -- data
+     tables and headline blocks must not inherit it. */
+  --section-y: clamp(5rem, 10vw, 9rem);
+  --page-gutter: clamp(1rem, 4vw, 2.5rem);
+  --content-max-width: 72rem;
+  --prose-measure: 65ch;
+
+  /* Fluid display type (plan §7.2 "Type scale"). Hero headline in Fraunces,
+     tight leading + negative tracking at display size; dek in Source Sans 3,
+     looser leading, capped measure so a wide viewport doesn't stretch a
+     one-line dek into an unreadable rule. */
+  --text-hero-size: clamp(2.5rem, 6vw, 4.5rem);
+  --text-dek-size: clamp(1.125rem, 2vw, 1.375rem);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Phase 4a layout primitives -- plain classes (not @theme-generated
+   utilities), so they carry no tree-shaking risk regardless of whether a
+   template literal or arbitrary-value class references the underlying
+   tokens elsewhere. Shared by 4a (this phase) and 4b so both build on one
+   spacing/measure language instead of inventing their own. */
+@layer components {
+  .section-y {
+    padding-block: var(--section-y);
+  }
+
+  .content-wrap {
+    max-width: var(--content-max-width);
+    margin-inline: auto;
+    padding-inline: var(--page-gutter);
+  }
+
+  /* Running prose only -- explicitly NOT applied to data tables or headline
+     blocks, which must use .content-wrap (or no cap at all) instead. */
+  .prose-measure {
+    max-width: var(--prose-measure);
+  }
+
+  .text-hero {
+    font-size: var(--text-hero-size);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+
+  .text-dek {
+    font-size: var(--text-dek-size);
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+
+  /* Phase 5 -- staggered card entrance (motion effect c). Server-rendered
+     default state (opacity 0, translateY) IS this class, applied
+     unconditionally -- StaggerItem (components/motion/StaggerItem.tsx) only
+     ever *adds* .is-visible on top of it, so slow hydration shows the
+     pre-animation state, never a flash of already-visible content.
+     content-visibility: auto lets the browser skip layout/paint for cards
+     not yet on screen, pairing naturally with the IntersectionObserver
+     trigger (research §7, Performance). Only transform/opacity animate. */
+  /* Hidden default is scoped to `.js` (set by an inline head script in
+     app/layout.tsx, before first paint) -- so it only ever applies when JS
+     is actually present to reveal it later via .is-visible. Without JS (or
+     if the inline script never runs) the cards render visible from the
+     first paint; the "no flash on slow hydration" property is preserved
+     because .js is set before paint, not after hydration. */
+  .js .stagger-item {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 320px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity var(--duration-entrance) var(--ease-entrance),
+      transform var(--duration-entrance) var(--ease-entrance);
+    transition-delay: calc(var(--i, 0) * var(--stagger-step));
+  }
+
+  .stagger-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Phase 5 -- week/period-over-period delta emphasis (motion effect d).
+     transform/opacity only (compositor-only, never width/top/box-shadow).
+     The blanket prefers-reduced-motion guard in @layer base already
+     collapses animation-duration to ~0ms and iteration-count to 1 here, so
+     the pulse itself needs no separate reduced-motion branch -- only the
+     arrow glyph + color (set by the component, not this animation) must
+     remain, which they do since they are plain (non-animated) styles. */
+  @keyframes delta-pulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(1.15);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .delta-pulse {
+    animation: delta-pulse var(--duration-emphasis) var(--ease-emphasis) 1;
+  }
+}

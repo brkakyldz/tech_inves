@@ -1,0 +1,867 @@
+{
+  "AAPL": [],
+  "ACN": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 82
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 90
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 95
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 99
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 94
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 73
+    }
+  ],
+  "ADBE": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 90
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 85
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 92
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 91
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 92
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 81
+    }
+  ],
+  "AMAT": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 51
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 45
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 39
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 36
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 31
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 59
+    }
+  ],
+  "AMD": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 77
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 85
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 82
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 86
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 82
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 71
+    }
+  ],
+  "AMZN": [],
+  "ARM": [],
+  "ASML": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 84
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 82
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 77
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 84
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 89
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 83
+    }
+  ],
+  "AVGO": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 72
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 73
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 73
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 79
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 78
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 65
+    }
+  ],
+  "CRM": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 59
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 57
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 65
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 67
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 72
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 64
+    }
+  ],
+  "CRWD": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 47
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 53
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 51
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 53
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 55
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 49
+    }
+  ],
+  "CRWV": [],
+  "CSCO": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 60
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 65
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 65
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 71
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 70
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 58
+    }
+  ],
+  "DDOG": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 66
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 64
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 63
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 68
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 74
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 72
+    }
+  ],
+  "DELL": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 71
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 67
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 75
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 78
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 83
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 57
+    }
+  ],
+  "FTNT": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 63
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 65
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 69
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 68
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 66
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 77
+    }
+  ],
+  "GLW": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 63
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 66
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 73
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 70
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 68
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 68
+    }
+  ],
+  "GOOGL": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 55
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 53
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 59
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 67
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 63
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 51
+    }
+  ],
+  "HPE": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 64
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 61
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 69
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 72
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 74
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 68
+    }
+  ],
+  "IBM": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 57
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 59
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 59
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 58
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 64
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 53
+    }
+  ],
+  "INTC": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 69
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 63
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 59
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 59
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 66
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 61
+    }
+  ],
+  "INTU": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 80
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 80
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 87
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 82
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 87
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 76
+    }
+  ],
+  "LRCX": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 45
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 45
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 50
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 55
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 54
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 53
+    }
+  ],
+  "META": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 75
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 78
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 83
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 86
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 88
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 68
+    }
+  ],
+  "MSFT": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 89
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 84
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 80
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 82
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 78
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 80
+    }
+  ],
+  "MU": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 62
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 57
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 62
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 67
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 70
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 60
+    }
+  ],
+  "NET": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 73
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 77
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 78
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 72
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 70
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 56
+    }
+  ],
+  "NOW": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 67
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 75
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 72
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 75
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 76
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 71
+    }
+  ],
+  "NVDA": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 90
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 93
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 99
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 94
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 97
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 76
+    }
+  ],
+  "ORCL": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 64
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 68
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 67
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 65
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 59
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 55
+    }
+  ],
+  "PANW": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 54
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 59
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 59
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 56
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 56
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 57
+    }
+  ],
+  "PLTR": [],
+  "QCOM": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 62
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 65
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 70
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 72
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 69
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 65
+    }
+  ],
+  "SHOP": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 65
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 68
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 75
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 78
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 79
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 70
+    }
+  ],
+  "SMCI": [],
+  "SNOW": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 75
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 80
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 76
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 83
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 87
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 76
+    }
+  ],
+  "TSM": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 70
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 73
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 77
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 82
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 80
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 77
+    }
+  ],
+  "TXN": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 64
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 71
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 76
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 70
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 69
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 64
+    }
+  ],
+  "VRT": [],
+  "WDAY": [
+    {
+      "period": "2025-Q1",
+      "compositeScore": 66
+    },
+    {
+      "period": "2025-Q2",
+      "compositeScore": 66
+    },
+    {
+      "period": "2025-Q3",
+      "compositeScore": 68
+    },
+    {
+      "period": "2025-Q4",
+      "compositeScore": 69
+    },
+    {
+      "period": "2026-Q1",
+      "compositeScore": 76
+    },
+    {
+      "period": "2026-Q2",
+      "compositeScore": 67
+    }
+  ]
+}
