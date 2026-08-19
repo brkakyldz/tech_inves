@@ -37,3 +37,9 @@ data/*backup*.db
 # is local-only: it drives the development workflow on this machine and is
 # deliberately not part of the published repo.
 /reports/
+
+# Agent workflow layer: hooks, skills and coordination rules that drive the
+# local reports/ working memory. Kept on the machine, not part of the product.
+/.claude/
+/AGENT_COORDINATION.md
+/CLAUDE.local.md
