@@ -349,6 +349,10 @@ def test_file_store_mode_writes_no_run_row(tmp_path, monkeypatch):
 def test_cli_passes_the_label_through_as_the_run_id(monkeypatch):
     import pipeline.run as run_module
 
+    # All three required keys (`techinves.runs.keys`), not just the two the
+    # pipeline itself calls: the CLI refuses on the first missing one, so a
+    # partial set never reaches `run_pipeline` at all.
+    monkeypatch.setenv("FMP_API_KEY", "fmp-test")
     monkeypatch.setenv("OPENAI_API_KEY", "sk-test")
     monkeypatch.setenv("TAVILY_API_KEY", "tvly-test")
 

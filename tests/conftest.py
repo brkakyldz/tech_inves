@@ -66,6 +66,38 @@ def pytest_report_header() -> list[str]:
     ]
 
 
+# --- ambient-environment isolation ------------------------------------------
+#
+# `techinves.config` calls `load_dotenv()` at import, and `make_engine()`
+# falls back to a repo-local sqlite file. Together those made the suite read
+# whatever the developer happens to have on this machine: a populated `.env`
+# and an already-migrated `techinves.db`. Two tests passed locally for that
+# reason alone and failed in CI, where neither exists -- the worst direction
+# for the difference to run, since the green result is the wrong one.
+#
+# So every test starts from the keyless, no-database state CI has. A test
+# that needs a key or a schema sets it up itself and says so.
+
+AMBIENT_ENV_VARS = (
+    "FMP_API_KEY",
+    "OPENAI_API_KEY",
+    "TAVILY_API_KEY",
+    "FRED_API_KEY",
+    "EXA_API_KEY",
+    "DATABASE_URL",
+)
+
+
+@pytest.fixture(autouse=True)
+def isolated_env(monkeypatch, tmp_path):
+    """Clear every ambient key, and point the default engine at an empty
+    per-test sqlite path so a test that reaches it fails instead of quietly
+    reading the developer's real database."""
+    for name in AMBIENT_ENV_VARS:
+        monkeypatch.delenv(name, raising=False)
+    monkeypatch.setenv("DATABASE_URL", f"sqlite+aiosqlite:///{(tmp_path / 'ambient.db').as_posix()}")
+
+
 class FakeFMPClient:
     """Drop-in replacement for FMPClient.get() backed by an in-memory dict
     keyed by (endpoint, ticker, params.get("period")). Records every call so

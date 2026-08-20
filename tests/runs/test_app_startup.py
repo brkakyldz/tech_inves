@@ -17,6 +17,15 @@ from techinves.runs.service import RunService
 
 
 async def test_reconciliation_completes_before_the_first_request(session_maker, monkeypatch):
+    # Live mode, explicitly. With a key missing the lifespan also takes the
+    # demo seed-on-empty branch, which opens the *default* engine rather than
+    # this test's fixture database -- so the assertion below would depend on
+    # whether the machine running the suite happens to have a migrated
+    # `techinves.db` lying around. What is under test here is the ordering of
+    # reconciliation, not the seed.
+    for name in ("FMP_API_KEY", "OPENAI_API_KEY", "TAVILY_API_KEY"):
+        monkeypatch.setenv(name, "test-key")
+
     now = now_naive_utc()
     async with session_maker() as session:
         session.add(
