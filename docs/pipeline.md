@@ -31,53 +31,10 @@ Everything expensive is decided before the graph is invoked. Highlight
 selection, scores and the macro spine are graph *input*, so the fan-out width is
 already known when `init` runs.
 
-```mermaid
-flowchart TB
-    subgraph pre["BEFORE THE GRAPH — pipeline/run.py, no LLM"]
-        direction LR
-        CE["covered_events<br/>DB or JSON store<br/>de-dup memory"]
-        HP["highlight probe<br/>1 cheap search per ticker<br/>rank → keep 3–4"]
-        SC["scores + financials<br/>techinves DB<br/>whole watchlist"]
-        MS["macro spine<br/>FRED, optional<br/>real numbers"]
-    end
-
-    pre -->|initial_state| INIT
-
-    subgraph lg["LANGGRAPH — StateGraph(ReportState)"]
-        INIT["init<br/>RESET × 4 channels"]
-        FAN{{"fan_out_research<br/>router → one Send() each"}}
-        CO["3–4 × company<br/>highlight_tickers"]
-        MA["10 × macro<br/>MACRO_TOPICS"]
-        RB["research_branch — one shared node fn<br/>search legs → structured extraction · max_concurrency = 6"]
-        SY["synthesis<br/>1 writer call + deterministic inserts"]
-        VE["verifier<br/>rules first, then judge"]
-
-        INIT --> FAN
-        FAN --> CO
-        FAN --> MA
-        CO --> RB
-        MA --> RB
-        RB -->|fan-in via reducers| SY
-        SY --> VE
-    end
-
-    subgraph post["AFTER THE GRAPH — persistence"]
-        direction LR
-        P1["covered_events<br/>skipped when blocked"]
-        P2["resolve + fence<br/>placeholders, score block"]
-        P3["save_draft_report<br/>every verdict, block too"]
-        P4["save_run_summary<br/>tokens, cost, yield floor"]
-    end
-
-    VE -->|verdict + draft| post
-
-    classDef det fill:#E2F0F1,stroke:#0B6A71,stroke-width:1.5px,color:#0b1113
-    classDef llm fill:#F8EEDC,stroke:#9A5D06,stroke-width:1.5px,color:#0b1113
-    classDef plain fill:#FFFFFF,stroke:#8FA1A5,stroke-width:1px,color:#0b1113
-    class CE,HP,SC,MS,P1,P2,P3,P4 det
-    class RB,SY,VE llm
-    class INIT,FAN,CO,MA plain
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="diagrams/pipeline-flow-dark.svg">
+  <img alt="End-to-end pipeline: a pre-graph stage loads covered events, picks 3-4 highlight tickers with a cheap search probe, and loads scores and the macro spine; the LangGraph runs init, fans out Sends to company and macro research branches, then synthesis and the verifier; afterwards the run persists covered events, the resolved report and the run summary." src="diagrams/pipeline-flow-light.svg" width="900">
+</picture>
 
 The graph is four nodes deep. Its width is decided outside it: the cheap probe
 fixes the company branch count at three or four before `build_graph()` is ever
@@ -91,40 +48,10 @@ failing leg contributes zero results, never a branch failure. The set of URLs
 that actually came back — `retrieved_urls` — is the only thing a citation is
 later allowed to point at.
 
-```mermaid
-flowchart TB
-    IN["ResearchBranchInput — scope, ticker or topic, covered_events_context, as_of<br/>window pinned to [as_of − 6d, as_of], never a relative time_range"]
-
-    MAIN["main search — 2 queries<br/>Tavily: topic=news, advanced depth, include_domains = TRUSTED_DOMAINS<br/>fallback → Exa when Tavily errors, only if EXA_API_KEY is set"]
-    LEGS["additive legs<br/>company → EDGAR full-text search<br/>company → IR press-release feed<br/>company → EDGAR submissions<br/>macro → Federal Register, if the topic is regulatory"]
-
-    MERGE["merge and de-duplicate by url"]
-    RU["retrieved_urls<br/>the closed vocabulary every citation must be in"]
-    EX["llm.with_structured_output(FindingsBatch)<br/>schema forbids numeric fields outright"]
-    GF["grounding filter<br/>drop source_urls not in retrieved_urls · source_tier = min(domain_tier)"]
-    OUT["Finding[] → state"]
-    FN["FailureNote<br/>branch isolated, run lives"]
-
-    IN --> MAIN
-    IN --> LEGS
-    MAIN --> MERGE
-    LEGS --> MERGE
-    MERGE --> RU
-    RU --> EX
-    EX --> GF
-    GF --> OUT
-    EX -.->|"retry: 1s × 2ⁿ"| MAIN
-    EX -.->|"refusal, or 2 retries spent"| FN
-
-    classDef det fill:#E2F0F1,stroke:#0B6A71,stroke-width:1.5px,color:#0b1113
-    classDef llm fill:#F8EEDC,stroke:#9A5D06,stroke-width:1.5px,color:#0b1113
-    classDef halt fill:#F7E7E4,stroke:#A0362A,stroke-width:1.5px,color:#0b1113
-    classDef plain fill:#FFFFFF,stroke:#8FA1A5,stroke-width:1px,color:#0b1113
-    class RU,OUT det
-    class EX llm
-    class FN halt
-    class IN,MAIN,LEGS,MERGE,GF plain
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="diagrams/research-branch-dark.svg">
+  <img alt="One research branch: two search queries hit Tavily with an Exa fallback while additive legs hit EDGAR, IR feeds or the Federal Register; results de-duplicate into retrieved_urls, which feeds a structured LLM extraction call and a grounding filter; on exception the branch backs off and retries, and on exhaustion records a FailureNote." src="diagrams/research-branch-light.svg" width="900">
+</picture>
 
 The retry arc is the only cycle in the system. A refusal short-circuits it
 immediately — retrying a content filter buys nothing but quota — while a timeout
@@ -206,3 +133,11 @@ narrative prose over findings it was handed.
 
 See [`.env.example`](../.env.example) for the full list of variables the code
 reads.
+
+---
+
+The two diagrams above are committed as SVG under `docs/diagrams/`, one file per
+colour scheme. They are exported from [`pipeline.html`](pipeline.html) - a
+self-contained page carrying the same drawings plus this document's tables. Open
+that file locally to read it as a page; edit it, re-export, and both this
+document and the README stay in step.

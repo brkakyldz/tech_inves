@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="910" class="dg" viewBox="0 0 900 910" role="img"
+             aria-label="Top-to-bottom flow: a pre-graph stage loads covered events, selects 3 to 4 highlight tickers with a cheap search probe, loads scores and the macro spine; the LangGraph then runs init, fans out Sends to company and macro research branches, converges on a synthesis LLM call and a verifier; afterwards the run persists covered events, the resolved report and the run summary.">
+<style>
+  .dg { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace; }
+  .band { fill: none; stroke: #C3CFD1; stroke-dasharray: 5 4; }
+  .band-det { stroke: #0B6A71; }
+  .n { fill: #FFFFFF; stroke: #8FA1A5; stroke-width: 1; }
+  .n-det { stroke: #0B6A71; fill: #E2F0F1; }
+  .n-llm { stroke: #9A5D06; fill: #F8EEDC; }
+  .n-halt { stroke: #A0362A; fill: #F7E7E4; }
+  .t { fill: #101719; font-size: 12px; font-weight: 500; }
+  .t-s { fill: #56686D; font-size: 10.5px; }
+  .t-llm { fill: #9A5D06; font-size: 12px; font-weight: 600; }
+  .t-det { fill: #0B6A71; font-size: 12px; font-weight: 600; }
+  .lbl { fill: #56686D; font-size: 9.5px; letter-spacing: 0.12em; }
+  .edge { stroke: #8FA1A5; stroke-width: 1.2; fill: none; }
+  .edge-halt { stroke: #A0362A; stroke-dasharray: 4 3; }
+  .elabel { fill: #56686D; font-size: 10px; }
+  .head { fill: #8FA1A5; }
+  .head-halt { fill: #A0362A; }
+</style>
+<rect x="0" y="0" width="900" height="910" fill="#FBFCFC"/>
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5"
+                    markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" class="head"/>
+            </marker>
+          </defs>
+
+          <!-- ===== BEFORE THE GRAPH ===== -->
+          <rect class="band" x="30" y="44" width="840" height="112" rx="5"/>
+          <text class="lbl" x="42" y="34">BEFORE THE GRAPH &mdash; pipeline/run.py, no LLM</text>
+
+          <rect class="n n-det" x="46"  y="70" width="192" height="66" rx="3"/>
+          <text class="t"   x="142" y="94"  text-anchor="middle">covered_events</text>
+          <text class="t-s" x="142" y="110" text-anchor="middle">DB or JSON store</text>
+          <text class="t-s" x="142" y="124" text-anchor="middle">de-dup memory</text>
+
+          <rect class="n n-det" x="254" y="70" width="192" height="66" rx="3"/>
+          <text class="t"   x="350" y="94"  text-anchor="middle">highlight probe</text>
+          <text class="t-s" x="350" y="110" text-anchor="middle">1 cheap search / ticker</text>
+          <text class="t-s" x="350" y="124" text-anchor="middle">rank &rarr; keep 3&ndash;4</text>
+
+          <rect class="n n-det" x="462" y="70" width="192" height="66" rx="3"/>
+          <text class="t"   x="558" y="94"  text-anchor="middle">scores + financials</text>
+          <text class="t-s" x="558" y="110" text-anchor="middle">techinves DB</text>
+          <text class="t-s" x="558" y="124" text-anchor="middle">whole watchlist</text>
+
+          <rect class="n n-det" x="670" y="70" width="192" height="66" rx="3"/>
+          <text class="t"   x="766" y="94"  text-anchor="middle">macro spine</text>
+          <text class="t-s" x="766" y="110" text-anchor="middle">FRED, optional</text>
+          <text class="t-s" x="766" y="124" text-anchor="middle">real numbers</text>
+
+          <line class="edge" x1="450" y1="156" x2="450" y2="192" marker-end="url(#ah)"/>
+          <text class="elabel" x="460" y="178">initial_state</text>
+
+          <!-- ===== THE GRAPH ===== -->
+          <rect class="band band-det" x="30" y="200" width="840" height="548" rx="5"/>
+          <text class="lbl" x="44" y="222">LANGGRAPH &mdash; StateGraph(ReportState)</text>
+
+          <rect class="n" x="350" y="238" width="200" height="48" rx="3"/>
+          <text class="t"   x="450" y="260" text-anchor="middle">init</text>
+          <text class="t-s" x="450" y="276" text-anchor="middle">RESET &times; 4 channels</text>
+
+          <line class="edge" x1="450" y1="286" x2="450" y2="312" marker-end="url(#ah)"/>
+
+          <rect class="n" x="316" y="320" width="268" height="48" rx="3"/>
+          <text class="t"   x="450" y="342" text-anchor="middle">fan_out_research</text>
+          <text class="t-s" x="450" y="358" text-anchor="middle">router &rarr; one Send() each</text>
+
+          <path class="edge" d="M 420 368 L 420 392 L 250 392 L 250 414" marker-end="url(#ah)"/>
+          <path class="edge" d="M 480 368 L 480 392 L 650 392 L 650 414" marker-end="url(#ah)"/>
+
+          <rect class="n" x="100" y="422" width="300" height="52" rx="3"/>
+          <text class="t"   x="250" y="444" text-anchor="middle">3&ndash;4 &times; company</text>
+          <text class="t-s" x="250" y="461" text-anchor="middle">highlight_tickers</text>
+
+          <rect class="n" x="500" y="422" width="300" height="52" rx="3"/>
+          <text class="t"   x="650" y="444" text-anchor="middle">10 &times; macro</text>
+          <text class="t-s" x="650" y="461" text-anchor="middle">MACRO_TOPICS</text>
+
+          <path class="edge" d="M 250 474 L 250 496 L 340 496 L 340 512" marker-end="url(#ah)"/>
+          <path class="edge" d="M 650 474 L 650 496 L 560 496 L 560 512" marker-end="url(#ah)"/>
+
+          <rect class="n n-llm" x="170" y="520" width="560" height="52" rx="3"/>
+          <text class="t-llm" x="450" y="542" text-anchor="middle">research_branch &mdash; one shared node fn</text>
+          <text class="t-s"   x="450" y="559" text-anchor="middle">search legs &rarr; structured extraction &middot; max_concurrency = 6</text>
+
+          <line class="edge" x1="450" y1="572" x2="450" y2="600" marker-end="url(#ah)"/>
+          <text class="elabel" x="462" y="590">fan-in via reducers</text>
+
+          <rect class="n n-llm" x="330" y="608" width="240" height="48" rx="3"/>
+          <text class="t-llm" x="450" y="630" text-anchor="middle">synthesis</text>
+          <text class="t-s"   x="450" y="646" text-anchor="middle">1 writer call + fixed inserts</text>
+
+          <line class="edge" x1="450" y1="656" x2="450" y2="678" marker-end="url(#ah)"/>
+
+          <rect class="n n-llm" x="330" y="686" width="240" height="48" rx="3"/>
+          <text class="t-llm" x="450" y="708" text-anchor="middle">verifier</text>
+          <text class="t-s"   x="450" y="724" text-anchor="middle">rules first, then judge</text>
+
+          <line class="edge" x1="450" y1="748" x2="450" y2="794" marker-end="url(#ah)"/>
+          <text class="elabel" x="462" y="776">verdict + draft</text>
+
+          <!-- ===== AFTER THE GRAPH ===== -->
+          <rect class="band" x="30" y="802" width="840" height="96" rx="5"/>
+          <text class="lbl" x="42" y="792">AFTER THE GRAPH &mdash; persistence</text>
+
+          <rect class="n n-det" x="46"  y="822" width="192" height="56" rx="3"/>
+          <text class="t"   x="142" y="846" text-anchor="middle">covered_events</text>
+          <text class="t-s" x="142" y="862" text-anchor="middle">skipped when blocked</text>
+
+          <rect class="n n-det" x="254" y="822" width="192" height="56" rx="3"/>
+          <text class="t"   x="350" y="846" text-anchor="middle">resolve + fence</text>
+          <text class="t-s" x="350" y="862" text-anchor="middle">placeholders, score block</text>
+
+          <rect class="n n-det" x="462" y="822" width="192" height="56" rx="3"/>
+          <text class="t"   x="558" y="846" text-anchor="middle">save_draft_report</text>
+          <text class="t-s" x="558" y="862" text-anchor="middle">every verdict, block too</text>
+
+          <rect class="n n-det" x="670" y="822" width="192" height="56" rx="3"/>
+          <text class="t"   x="766" y="846" text-anchor="middle">save_run_summary</text>
+          <text class="t-s" x="766" y="862" text-anchor="middle">tokens, cost, yield floor</text>
+        </svg>

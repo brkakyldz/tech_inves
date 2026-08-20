@@ -1,0 +1,846 @@
+<title>TechInves Report Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+
+<style>
+  :root {
+    color-scheme: light;
+    --ground:      #EEF1F1;
+    --surface:     #FBFCFC;
+    --surface-2:   #FFFFFF;
+    --ink:         #101719;
+    --muted:       #56686D;
+    --line:        #C3CFD1;
+    --line-strong: #8FA1A5;
+
+    /* The page's one organizing distinction: code vs. generation. */
+    --det:         #0B6A71;   /* deterministic, LLM-free */
+    --det-wash:    #E2F0F1;
+    --llm:         #9A5D06;   /* an LLM call happens here */
+    --llm-wash:    #F8EEDC;
+    --halt:        #A0362A;   /* block / failure path */
+    --halt-wash:   #F7E7E4;
+
+    --sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --ground:      #0B1113;
+      --surface:     #121A1C;
+      --surface-2:   #172124;
+      --ink:         #DCE6E7;
+      --muted:       #8DA1A6;
+      --line:        #2C3B3F;
+      --line-strong: #5B7076;
+      --det:         #54CBD3;
+      --det-wash:    #0E2B2E;
+      --llm:         #E3A648;
+      --llm-wash:    #2C2214;
+      --halt:        #E8836F;
+      --halt-wash:   #2E1A16;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --ground:      #0B1113;
+    --surface:     #121A1C;
+    --surface-2:   #172124;
+    --ink:         #DCE6E7;
+    --muted:       #8DA1A6;
+    --line:        #2C3B3F;
+    --line-strong: #5B7076;
+    --det:         #54CBD3;
+    --det-wash:    #0E2B2E;
+    --llm:         #E3A648;
+    --llm-wash:    #2C2214;
+    --halt:        #E8836F;
+    --halt-wash:   #2E1A16;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+    display: flex;
+    flex-direction: column;
+    gap: 52px;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead { display: flex; flex-direction: column; gap: 14px; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  h1 {
+    font-size: clamp(30px, 5.2vw, 46px);
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    line-height: 1.08;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .standfirst {
+    max-width: 62ch;
+    font-size: 17px;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 6px;
+  }
+
+  .key {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 11px 5px 9px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--muted);
+  }
+  .key::before {
+    content: "";
+    width: 9px; height: 9px;
+    border-radius: 2px;
+    background: var(--swatch, var(--line-strong));
+  }
+  .key.det  { --swatch: var(--det); }
+  .key.llm  { --swatch: var(--llm); }
+  .key.halt { --swatch: var(--halt); }
+
+  /* ---------- sections ---------- */
+
+  section { display: flex; flex-direction: column; gap: 18px; }
+
+  .rule {
+    border: 0;
+    border-top: 1px solid var(--line);
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    margin: 0;
+  }
+
+  p { margin: 0; max-width: 68ch; }
+
+  a { color: var(--det); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, .key:focus-visible { outline: 2px solid var(--det); outline-offset: 2px; }
+
+  code {
+    font-family: var(--mono);
+    font-size: 0.885em;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 0.08em 0.34em;
+  }
+
+  /* ---------- callout ---------- */
+
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--halt);
+    border-radius: 3px;
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .callout .eyebrow { color: var(--halt); }
+  .callout p { max-width: 66ch; }
+
+  /* ---------- figures ---------- */
+
+  figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .frame {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 18px;
+    overflow-x: auto;
+  }
+
+  .frame svg {
+    display: block;
+    width: 100%;
+    min-width: 660px;
+    height: auto;
+  }
+
+  figcaption {
+    font-size: 13.5px;
+    color: var(--muted);
+    max-width: 72ch;
+  }
+
+  /* ---------- svg vocabulary ---------- */
+
+  .dg { font-family: var(--mono); }
+  .dg .band  { fill: none; stroke: var(--line); stroke-dasharray: 5 4; }
+  .dg .band-det { stroke: var(--det); }
+  .dg .n     { fill: var(--surface-2); stroke: var(--line-strong); stroke-width: 1; }
+  .dg .n-det { stroke: var(--det); fill: var(--det-wash); }
+  .dg .n-llm { stroke: var(--llm); fill: var(--llm-wash); }
+  .dg .n-halt{ stroke: var(--halt); fill: var(--halt-wash); }
+  .dg .t     { fill: var(--ink); font-size: 12px; font-weight: 500; }
+  .dg .t-s   { fill: var(--muted); font-size: 10.5px; }
+  .dg .t-llm { fill: var(--llm); font-size: 12px; font-weight: 600; }
+  .dg .t-det { fill: var(--det); font-size: 12px; font-weight: 600; }
+  .dg .lbl   { fill: var(--muted); font-size: 9.5px; letter-spacing: 0.12em; }
+  .dg .edge  { stroke: var(--line-strong); stroke-width: 1.2; fill: none; }
+  .dg .edge-halt { stroke: var(--halt); stroke-dasharray: 4 3; }
+  .dg .elabel{ fill: var(--muted); font-size: 10px; }
+  .dg .head  { fill: var(--line-strong); }
+  .dg .head-halt { fill: var(--halt); }
+
+  /* ---------- tables ---------- */
+
+  .tablewrap {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--surface);
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 560px;
+    font-size: 14px;
+  }
+
+  th {
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  tbody tr:last-child td { border-bottom: 0; }
+
+  td.mono, th.mono, .num {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  td.mono { color: var(--ink); }
+  .dim { color: var(--muted); }
+
+  .stripe {
+    border-left: 3px solid var(--tone, var(--line-strong));
+  }
+  .stripe.block   { --tone: var(--halt); }
+  .stripe.degrade { --tone: var(--llm); }
+  .stripe.flags   { --tone: var(--line-strong); }
+  .stripe.pass    { --tone: var(--det); }
+
+  .verdict {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .verdict.block   { color: var(--halt); }
+  .verdict.degrade { color: var(--llm); }
+  .verdict.pass    { color: var(--det); }
+
+  /* ---------- notes ---------- */
+
+  .notes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+  }
+
+  .note {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .note p { font-size: 14.5px; max-width: none; }
+
+  footer {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+  }
+
+  @media (max-width: 620px) {
+    .page { padding: 40px 16px 72px; gap: 42px; }
+    .frame { padding: 12px; }
+  }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">pipeline/ &middot; LangGraph report production</p>
+    <h1>TechInves Report Pipeline</h1>
+    <p class="standfirst">
+      How one run turns a watchlist into a graded sector report: what runs before the graph,
+      where the search tools are actually called, the four places an LLM is invoked, and the
+      rule that decides whether the draft ships.
+    </p>
+    <div class="legend">
+      <span class="key det">deterministic &mdash; no LLM</span>
+      <span class="key llm">LLM invocation</span>
+      <span class="key halt">failure / block path</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="callout">
+      <p class="eyebrow">First, the thing the diagram is not</p>
+      <p>
+        <strong>There is no ReAct loop and no tool calling in this pipeline.</strong>
+        <code>bind_tools</code>, <code>create_react_agent</code>, <code>ToolNode</code>,
+        <code>AgentExecutor</code> and <code>@tool</code> appear nowhere in the repo. No model
+        ever decides which tool to invoke. Search providers are called directly from Python on a
+        fixed schedule; the LLM is reached only through <code>with_structured_output(&hellip;)</code>
+        for extraction and judging, and a plain <code>invoke</code> for writing.
+      </p>
+      <p>
+        The only loop inside a research branch is a <em>retry</em> loop &mdash; exponential backoff
+        around a failed call &mdash; not a reasoning loop. What looks agentic from the outside is a
+        static DAG with injected clients.
+      </p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <h2>The whole run, end to end</h2>
+    <p>
+      Everything expensive is decided before the graph is invoked. Highlight selection, scores,
+      and the macro spine are graph <em>input</em>, so the fan-out width is already known when
+      <code>init</code> runs.
+    </p>
+
+    <figure>
+      <div class="frame">
+        <svg class="dg" viewBox="0 0 900 910" role="img"
+             aria-label="Top-to-bottom flow: a pre-graph stage loads covered events, selects 3 to 4 highlight tickers with a cheap search probe, loads scores and the macro spine; the LangGraph then runs init, fans out Sends to company and macro research branches, converges on a synthesis LLM call and a verifier; afterwards the run persists covered events, the resolved report and the run summary.">
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5"
+                    markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" class="head"/>
+            </marker>
+          </defs>
+
+          <!-- ===== BEFORE THE GRAPH ===== -->
+          <rect class="band" x="30" y="44" width="840" height="112" rx="5"/>
+          <text class="lbl" x="42" y="34">BEFORE THE GRAPH &mdash; pipeline/run.py, no LLM</text>
+
+          <rect class="n n-det" x="46"  y="70" width="192" height="66" rx="3"/>
+          <text class="t"   x="142" y="94"  text-anchor="middle">covered_events</text>
+          <text class="t-s" x="142" y="110" text-anchor="middle">DB or JSON store</text>
+          <text class="t-s" x="142" y="124" text-anchor="middle">de-dup memory</text>
+
+          <rect class="n n-det" x="254" y="70" width="192" height="66" rx="3"/>
+          <text class="t"   x="350" y="94"  text-anchor="middle">highlight probe</text>
+          <text class="t-s" x="350" y="110" text-anchor="middle">1 cheap search / ticker</text>
+          <text class="t-s" x="350" y="124" text-anchor="middle">rank &rarr; keep 3&ndash;4</text>
+
+          <rect class="n n-det" x="462" y="70" width="192" height="66" rx="3"/>
+          <text class="t"   x="558" y="94"  text-anchor="middle">scores + financials</text>
+          <text class="t-s" x="558" y="110" text-anchor="middle">techinves DB</text>
+          <text class="t-s" x="558" y="124" text-anchor="middle">whole watchlist</text>
+
+          <rect class="n n-det" x="670" y="70" width="192" height="66" rx="3"/>
+          <text class="t"   x="766" y="94"  text-anchor="middle">macro spine</text>
+          <text class="t-s" x="766" y="110" text-anchor="middle">FRED, optional</text>
+          <text class="t-s" x="766" y="124" text-anchor="middle">real numbers</text>
+
+          <line class="edge" x1="450" y1="156" x2="450" y2="192" marker-end="url(#ah)"/>
+          <text class="elabel" x="460" y="178">initial_state</text>
+
+          <!-- ===== THE GRAPH ===== -->
+          <rect class="band band-det" x="30" y="200" width="840" height="548" rx="5"/>
+          <text class="lbl" x="44" y="222">LANGGRAPH &mdash; StateGraph(ReportState)</text>
+
+          <rect class="n" x="350" y="238" width="200" height="48" rx="3"/>
+          <text class="t"   x="450" y="260" text-anchor="middle">init</text>
+          <text class="t-s" x="450" y="276" text-anchor="middle">RESET &times; 4 channels</text>
+
+          <line class="edge" x1="450" y1="286" x2="450" y2="312" marker-end="url(#ah)"/>
+
+          <rect class="n" x="316" y="320" width="268" height="48" rx="3"/>
+          <text class="t"   x="450" y="342" text-anchor="middle">fan_out_research</text>
+          <text class="t-s" x="450" y="358" text-anchor="middle">router &rarr; one Send() each</text>
+
+          <path class="edge" d="M 420 368 L 420 392 L 250 392 L 250 414" marker-end="url(#ah)"/>
+          <path class="edge" d="M 480 368 L 480 392 L 650 392 L 650 414" marker-end="url(#ah)"/>
+
+          <rect class="n" x="100" y="422" width="300" height="52" rx="3"/>
+          <text class="t"   x="250" y="444" text-anchor="middle">3&ndash;4 &times; company</text>
+          <text class="t-s" x="250" y="461" text-anchor="middle">highlight_tickers</text>
+
+          <rect class="n" x="500" y="422" width="300" height="52" rx="3"/>
+          <text class="t"   x="650" y="444" text-anchor="middle">10 &times; macro</text>
+          <text class="t-s" x="650" y="461" text-anchor="middle">MACRO_TOPICS</text>
+
+          <path class="edge" d="M 250 474 L 250 496 L 340 496 L 340 512" marker-end="url(#ah)"/>
+          <path class="edge" d="M 650 474 L 650 496 L 560 496 L 560 512" marker-end="url(#ah)"/>
+
+          <rect class="n n-llm" x="170" y="520" width="560" height="52" rx="3"/>
+          <text class="t-llm" x="450" y="542" text-anchor="middle">research_branch &mdash; one shared node fn</text>
+          <text class="t-s"   x="450" y="559" text-anchor="middle">search legs &rarr; structured extraction &middot; max_concurrency = 6</text>
+
+          <line class="edge" x1="450" y1="572" x2="450" y2="600" marker-end="url(#ah)"/>
+          <text class="elabel" x="462" y="590">fan-in via reducers</text>
+
+          <rect class="n n-llm" x="330" y="608" width="240" height="48" rx="3"/>
+          <text class="t-llm" x="450" y="630" text-anchor="middle">synthesis</text>
+          <text class="t-s"   x="450" y="646" text-anchor="middle">1 writer call + fixed inserts</text>
+
+          <line class="edge" x1="450" y1="656" x2="450" y2="678" marker-end="url(#ah)"/>
+
+          <rect class="n n-llm" x="330" y="686" width="240" height="48" rx="3"/>
+          <text class="t-llm" x="450" y="708" text-anchor="middle">verifier</text>
+          <text class="t-s"   x="450" y="724" text-anchor="middle">rules first, then judge</text>
+
+          <line class="edge" x1="450" y1="748" x2="450" y2="794" marker-end="url(#ah)"/>
+          <text class="elabel" x="462" y="776">verdict + draft</text>
+
+          <!-- ===== AFTER THE GRAPH ===== -->
+          <rect class="band" x="30" y="802" width="840" height="96" rx="5"/>
+          <text class="lbl" x="42" y="792">AFTER THE GRAPH &mdash; persistence</text>
+
+          <rect class="n n-det" x="46"  y="822" width="192" height="56" rx="3"/>
+          <text class="t"   x="142" y="846" text-anchor="middle">covered_events</text>
+          <text class="t-s" x="142" y="862" text-anchor="middle">skipped when blocked</text>
+
+          <rect class="n n-det" x="254" y="822" width="192" height="56" rx="3"/>
+          <text class="t"   x="350" y="846" text-anchor="middle">resolve + fence</text>
+          <text class="t-s" x="350" y="862" text-anchor="middle">placeholders, score block</text>
+
+          <rect class="n n-det" x="462" y="822" width="192" height="56" rx="3"/>
+          <text class="t"   x="558" y="846" text-anchor="middle">save_draft_report</text>
+          <text class="t-s" x="558" y="862" text-anchor="middle">every verdict, block too</text>
+
+          <rect class="n n-det" x="670" y="822" width="192" height="56" rx="3"/>
+          <text class="t"   x="766" y="846" text-anchor="middle">save_run_summary</text>
+          <text class="t-s" x="766" y="862" text-anchor="middle">tokens, cost, yield floor</text>
+        </svg>
+      </div>
+      <figcaption>
+        The graph is four nodes deep. Its width is decided outside it: the cheap probe fixes the
+        company branch count at three or four before <code>build_graph()</code> is ever called,
+        so the two selections the site shows &mdash; highlight badges and deep-dive sections
+        &mdash; agree by construction rather than by reconciliation.
+      </figcaption>
+    </figure>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <h2>Inside one research branch</h2>
+    <p>
+      This is where every external call lives. Each leg is additive: an empty or failing leg
+      contributes zero results, never a branch failure. The set of URLs that actually came back
+      &mdash; <code>retrieved_urls</code> &mdash; is the only thing a citation is later allowed to
+      point at.
+    </p>
+
+    <figure>
+      <div class="frame">
+        <svg class="dg" viewBox="0 0 900 640" role="img"
+             aria-label="One research branch: two search queries hit Tavily with an Exa fallback while additive legs hit EDGAR full text, IR feeds, EDGAR submissions or the Federal Register; results merge and de-duplicate by URL into the retrieved-urls set, which feeds a structured LLM extraction call and then a grounding filter that drops any citation not in that set; on exception the branch backs off and retries, and on exhaustion records a FailureNote.">
+          <defs>
+            <marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5"
+                    markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" class="head"/>
+            </marker>
+            <marker id="ah2r" viewBox="0 0 10 10" refX="9" refY="5"
+                    markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" class="head-halt"/>
+            </marker>
+          </defs>
+
+          <rect class="n" x="140" y="34" width="700" height="46" rx="3"/>
+          <text class="t"   x="490" y="56" text-anchor="middle">ResearchBranchInput &mdash; scope, ticker or topic, covered_events_context, as_of</text>
+          <text class="t-s" x="490" y="72" text-anchor="middle">window pinned to [as_of &minus; 6d, as_of], never a relative time_range</text>
+
+          <path class="edge" d="M 400 80 L 400 100 L 300 100 L 300 122" marker-end="url(#ah2)"/>
+          <path class="edge" d="M 580 80 L 580 100 L 680 100 L 680 122" marker-end="url(#ah2)"/>
+
+          <rect class="n" x="140" y="130" width="320" height="104" rx="3"/>
+          <text class="t"   x="160" y="152">main search &mdash; 2 queries</text>
+          <text class="t-s" x="160" y="172">Tavily: topic=news, advanced depth,</text>
+          <text class="t-s" x="160" y="188">include_domains = TRUSTED_DOMAINS</text>
+          <text class="t-s" x="160" y="210">fallback &rarr; Exa when Tavily errors</text>
+          <text class="t-s" x="160" y="226">(only if EXA_API_KEY is set)</text>
+
+          <rect class="n" x="520" y="130" width="320" height="104" rx="3"/>
+          <text class="t"   x="540" y="152">additive legs</text>
+          <text class="t-s" x="540" y="172">company &rarr; EDGAR full-text search</text>
+          <text class="t-s" x="540" y="188">company &rarr; IR press-release feed</text>
+          <text class="t-s" x="540" y="204">company &rarr; EDGAR submissions</text>
+          <text class="t-s" x="540" y="226">macro &rarr; Federal Register, if regulatory</text>
+
+          <path class="edge" d="M 300 234 L 300 262 L 400 262 L 400 282" marker-end="url(#ah2)"/>
+          <path class="edge" d="M 680 234 L 680 262 L 580 262 L 580 282" marker-end="url(#ah2)"/>
+
+          <rect class="n" x="300" y="290" width="380" height="42" rx="3"/>
+          <text class="t" x="490" y="316" text-anchor="middle">merge &amp; de-duplicate by url</text>
+
+          <line class="edge" x1="490" y1="332" x2="490" y2="356" marker-end="url(#ah2)"/>
+
+          <rect class="n n-det" x="300" y="364" width="380" height="46" rx="3"/>
+          <text class="t-det" x="490" y="386" text-anchor="middle">retrieved_urls</text>
+          <text class="t-s"   x="490" y="402" text-anchor="middle">the closed vocabulary every citation must be in</text>
+
+          <line class="edge" x1="490" y1="410" x2="490" y2="434" marker-end="url(#ah2)"/>
+
+          <rect class="n n-llm" x="270" y="442" width="440" height="46" rx="3"/>
+          <text class="t-llm" x="490" y="464" text-anchor="middle">llm.with_structured_output(FindingsBatch)</text>
+          <text class="t-s"   x="490" y="480" text-anchor="middle">schema forbids numeric fields outright</text>
+
+          <line class="edge" x1="490" y1="488" x2="490" y2="512" marker-end="url(#ah2)"/>
+
+          <rect class="n" x="230" y="520" width="520" height="46" rx="3"/>
+          <text class="t"   x="490" y="542" text-anchor="middle">grounding filter</text>
+          <text class="t-s" x="490" y="558" text-anchor="middle">drop source_urls &notin; retrieved_urls &middot; source_tier = min(domain_tier)</text>
+
+          <line class="edge" x1="490" y1="566" x2="490" y2="592" marker-end="url(#ah2)"/>
+          <text class="t-det" x="490" y="610" text-anchor="middle">Finding[] &rarr; state</text>
+
+          <!-- retry arc -->
+          <path class="edge edge-halt" d="M 270 465 L 90 465 L 90 152 L 140 152" marker-end="url(#ah2r)"/>
+          <text class="elabel" x="86" y="120" text-anchor="middle">retry</text>
+          <text class="elabel" x="86" y="134" text-anchor="middle">1s &times; 2&#8319;</text>
+
+          <!-- failure exit -->
+          <path class="edge edge-halt" d="M 710 465 L 800 465 L 800 512" marker-end="url(#ah2r)"/>
+          <rect class="n n-halt" x="700" y="520" width="180" height="46" rx="3"/>
+          <text class="t"   x="790" y="542" text-anchor="middle">FailureNote</text>
+          <text class="t-s" x="790" y="558" text-anchor="middle">branch isolated, run lives</text>
+          <text class="elabel" x="812" y="492">refusal, or</text>
+          <text class="elabel" x="812" y="505">2 retries spent</text>
+        </svg>
+      </div>
+      <figcaption>
+        The retry arc is the only cycle in the system. A refusal short-circuits it immediately
+        &mdash; retrying a content filter buys nothing but quota &mdash; while a timeout or rate
+        limit gets two backed-off attempts before the branch degrades to a
+        <code>FailureNote</code> the report will name.
+      </figcaption>
+    </figure>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <h2>Every LLM invocation in a run</h2>
+    <p>
+      Four call sites, and only three of them are wired into the graph. Token and cost accounting
+      binds a fresh usage handler per call, so concurrent branches never share an accumulator.
+    </p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Call site</th>
+            <th>Model</th>
+            <th>Shape</th>
+            <th>Calls per run</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="mono">research/agent.py</td>
+            <td class="mono">WRITER_MODEL</td>
+            <td>structured &rarr; <span class="mono">FindingsBatch</span></td>
+            <td class="num">13&ndash;14 <span class="dim">(one per branch)</span></td>
+          </tr>
+          <tr>
+            <td class="mono">synthesis/node.py</td>
+            <td class="mono">WRITER_MODEL</td>
+            <td>plain <span class="mono">invoke</span> &rarr; markdown</td>
+            <td class="num">1 <span class="dim">(the whole draft)</span></td>
+          </tr>
+          <tr>
+            <td class="mono">verifier/node.py</td>
+            <td class="mono">JUDGE_MODEL</td>
+            <td>structured &rarr; section scores 0&ndash;10</td>
+            <td class="num">0&ndash;1 <span class="dim">(skipped on block)</span></td>
+          </tr>
+          <tr>
+            <td class="mono dim">synthesis/section_synthesis.py</td>
+            <td class="mono dim">WRITER_MODEL</td>
+            <td class="dim">plain <span class="mono">invoke</span> &rarr; one company&rsquo;s prose</td>
+            <td class="num dim">0 &mdash; not a graph node yet</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      A blocked verdict never reaches the judge: the rule layer is authoritative for
+      <code>block</code>, so paying for a consistency review of an unpublishable draft is skipped
+      by design.
+    </p>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <h2>State and fan-in</h2>
+    <p>
+      Thirteen or fourteen branches write concurrently into four channels. <code>init</code> emits
+      a <code>RESET</code> sentinel first, so re-invoking a checkpointed thread starts empty
+      instead of doubling what the crashed attempt already accumulated.
+    </p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Channel</th>
+            <th>Reducer</th>
+            <th>Carries</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="mono">research_findings</td>
+            <td class="mono">additive_with_reset</td>
+            <td>Findings, no numeric fields by schema</td>
+          </tr>
+          <tr>
+            <td class="mono">retrieved_urls</td>
+            <td class="mono">union_with_reset</td>
+            <td>The grounding set the citation gate measures against</td>
+          </tr>
+          <tr>
+            <td class="mono">failures</td>
+            <td class="mono">additive_with_reset</td>
+            <td>Degraded branches, surfaced to the reader</td>
+          </tr>
+          <tr>
+            <td class="mono">branch_yields</td>
+            <td class="mono">additive_with_reset</td>
+            <td>Per-branch duration, tokens, cost, findings count</td>
+          </tr>
+          <tr>
+            <td class="mono">draft_report</td>
+            <td class="dim">last write wins</td>
+            <td>Written once, by <span class="mono">synthesis</span></td>
+          </tr>
+          <tr>
+            <td class="mono">verifier_report</td>
+            <td class="dim">last write wins</td>
+            <td>Verdict, violations, section scores</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <h2>How the verdict is decided</h2>
+    <p>
+      The rule-based pre-screen is deterministic and runs first. Severity, not the judge, picks
+      the verdict; the LLM layer can only raise it.
+    </p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Verdict</th>
+            <th>Triggered by</th>
+            <th>What happens to the report</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="stripe block"><span class="verdict block">block</span></td>
+            <td>Any <span class="mono">compliance_hard</span> violation &mdash; a leaked number, a fabricated citation, a missing disclaimer or AI disclosure</td>
+            <td>Published <em>with</em> its violation list, never silently discarded. <code>covered_events</code> stays untouched so the next run re-researches the window.</td>
+          </tr>
+          <tr>
+            <td class="stripe degrade"><span class="verdict degrade">degraded_publish</span></td>
+            <td>Any <span class="mono">structural_hard</span> violation with no compliance issue &mdash; e.g. missing deep-dive sections</td>
+            <td>Published behind a reduced-coverage banner that names each gap.</td>
+          </tr>
+          <tr>
+            <td class="stripe flags"><span class="verdict">pass_with_flags</span></td>
+            <td>Missing low-reliability labels, soft completeness gaps, or any judge section scoring confidence below 5</td>
+            <td>Published; the flagged sections are named in the run&rsquo;s verdict reason.</td>
+          </tr>
+          <tr>
+            <td class="stripe pass"><span class="verdict pass">pass</span></td>
+            <td>Nothing above fired</td>
+            <td>Published clean.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Completeness is measured against the full scoring-eligible watchlist, never against the run&rsquo;s
+      own highlight subset &mdash; otherwise a narrow run trivially satisfies itself.
+    </p>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <h2>Two commitments the code keeps</h2>
+    <div class="notes">
+      <div class="note">
+        <h3>Grounding is structural, not detected</h3>
+        <p>
+          The writer never emits a URL. It cites <code>[S3]</code> markers, and a deterministic
+          expansion turns those into links from the same closed vocabulary the prompt listed. An
+          invented id expands to nothing and is reported to the verifier as evidence &mdash; which
+          is why the citation gate reads the pre-strip draft, not the cleaned one.
+        </p>
+      </div>
+      <div class="note">
+        <h3>Nothing deterministic is asked of a model</h3>
+        <p>
+          The watchlist table, the fenced score block, the macro spine, the highlights lead-in and
+          the zero-yield coverage note are all rendered from data in code. The model is left with
+          one job: narrative prose over findings it was handed.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <h2>Knobs</h2>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Environment variable</th>
+            <th class="mono">Default</th>
+            <th>Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="mono">PIPELINE_RESEARCH_CONCURRENCY</td>
+            <td class="num">6</td>
+            <td>Ceiling on simultaneous research branches</td>
+          </tr>
+          <tr>
+            <td class="mono">PIPELINE_RESEARCH_LOOKBACK_DAYS</td>
+            <td class="num">7</td>
+            <td>Rolling window ending on <span class="mono">as_of</span>, inclusive of both ends</td>
+          </tr>
+          <tr>
+            <td class="mono">PIPELINE_RESEARCH_MAX_RETRIES</td>
+            <td class="num">2</td>
+            <td>Retries after the first attempt, before a <span class="mono">FailureNote</span></td>
+          </tr>
+          <tr>
+            <td class="mono">PIPELINE_RESEARCH_RETRY_BACKOFF_SECONDS</td>
+            <td class="num">1.0</td>
+            <td>Base of the <span class="mono">backoff &times; 2&#8319;</span> delay</td>
+          </tr>
+          <tr>
+            <td class="mono">PIPELINE_HIGHLIGHT_PROBE_MAX_RESULTS</td>
+            <td class="num">20</td>
+            <td>Result ceiling the probe&rsquo;s ranking signal saturates against</td>
+          </tr>
+          <tr>
+            <td class="mono">PIPELINE_YIELD_FLOOR_TRAILING_RUNS</td>
+            <td class="num">8</td>
+            <td>Prior runs compared against for the low-yield warning</td>
+          </tr>
+          <tr>
+            <td class="mono">EXA_API_KEY / SEC_EDGAR_USER_AGENT / FRED_API_KEY</td>
+            <td class="num dim">unset</td>
+            <td>Each unlocks one optional leg; unset skips it and says so</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    Drawn from pipeline/graph.py, research/agent.py, research/highlight_selection.py,
+    synthesis/node.py, verifier/node.py and verifier/rules.py.
+  </footer>
+
+</div>

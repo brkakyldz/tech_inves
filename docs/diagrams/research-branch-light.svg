@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="640" class="dg" viewBox="0 0 900 640" role="img"
+             aria-label="One research branch: two search queries hit Tavily with an Exa fallback while additive legs hit EDGAR full text, IR feeds, EDGAR submissions or the Federal Register; results merge and de-duplicate by URL into the retrieved-urls set, which feeds a structured LLM extraction call and then a grounding filter that drops any citation not in that set; on exception the branch backs off and retries, and on exhaustion records a FailureNote.">
+<style>
+  .dg { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace; }
+  .band { fill: none; stroke: #C3CFD1; stroke-dasharray: 5 4; }
+  .band-det { stroke: #0B6A71; }
+  .n { fill: #FFFFFF; stroke: #8FA1A5; stroke-width: 1; }
+  .n-det { stroke: #0B6A71; fill: #E2F0F1; }
+  .n-llm { stroke: #9A5D06; fill: #F8EEDC; }
+  .n-halt { stroke: #A0362A; fill: #F7E7E4; }
+  .t { fill: #101719; font-size: 12px; font-weight: 500; }
+  .t-s { fill: #56686D; font-size: 10.5px; }
+  .t-llm { fill: #9A5D06; font-size: 12px; font-weight: 600; }
+  .t-det { fill: #0B6A71; font-size: 12px; font-weight: 600; }
+  .lbl { fill: #56686D; font-size: 9.5px; letter-spacing: 0.12em; }
+  .edge { stroke: #8FA1A5; stroke-width: 1.2; fill: none; }
+  .edge-halt { stroke: #A0362A; stroke-dasharray: 4 3; }
+  .elabel { fill: #56686D; font-size: 10px; }
+  .head { fill: #8FA1A5; }
+  .head-halt { fill: #A0362A; }
+</style>
+<rect x="0" y="0" width="900" height="640" fill="#FBFCFC"/>
+          <defs>
+            <marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5"
+                    markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" class="head"/>
+            </marker>
+            <marker id="ah2r" viewBox="0 0 10 10" refX="9" refY="5"
+                    markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" class="head-halt"/>
+            </marker>
+          </defs>
+
+          <rect class="n" x="140" y="34" width="700" height="46" rx="3"/>
+          <text class="t"   x="490" y="56" text-anchor="middle">ResearchBranchInput &mdash; scope, ticker or topic, covered_events_context, as_of</text>
+          <text class="t-s" x="490" y="72" text-anchor="middle">window pinned to [as_of &minus; 6d, as_of], never a relative time_range</text>
+
+          <path class="edge" d="M 400 80 L 400 100 L 300 100 L 300 122" marker-end="url(#ah2)"/>
+          <path class="edge" d="M 580 80 L 580 100 L 680 100 L 680 122" marker-end="url(#ah2)"/>
+
+          <rect class="n" x="140" y="130" width="320" height="104" rx="3"/>
+          <text class="t"   x="160" y="152">main search &mdash; 2 queries</text>
+          <text class="t-s" x="160" y="172">Tavily: topic=news, advanced depth,</text>
+          <text class="t-s" x="160" y="188">include_domains = TRUSTED_DOMAINS</text>
+          <text class="t-s" x="160" y="210">fallback &rarr; Exa when Tavily errors</text>
+          <text class="t-s" x="160" y="226">(only if EXA_API_KEY is set)</text>
+
+          <rect class="n" x="520" y="130" width="320" height="104" rx="3"/>
+          <text class="t"   x="540" y="152">additive legs</text>
+          <text class="t-s" x="540" y="172">company &rarr; EDGAR full-text search</text>
+          <text class="t-s" x="540" y="188">company &rarr; IR press-release feed</text>
+          <text class="t-s" x="540" y="204">company &rarr; EDGAR submissions</text>
+          <text class="t-s" x="540" y="226">macro &rarr; Federal Register, if regulatory</text>
+
+          <path class="edge" d="M 300 234 L 300 262 L 400 262 L 400 282" marker-end="url(#ah2)"/>
+          <path class="edge" d="M 680 234 L 680 262 L 580 262 L 580 282" marker-end="url(#ah2)"/>
+
+          <rect class="n" x="300" y="290" width="380" height="42" rx="3"/>
+          <text class="t" x="490" y="316" text-anchor="middle">merge &amp; de-duplicate by url</text>
+
+          <line class="edge" x1="490" y1="332" x2="490" y2="356" marker-end="url(#ah2)"/>
+
+          <rect class="n n-det" x="300" y="364" width="380" height="46" rx="3"/>
+          <text class="t-det" x="490" y="386" text-anchor="middle">retrieved_urls</text>
+          <text class="t-s"   x="490" y="402" text-anchor="middle">the closed vocabulary every citation must be in</text>
+
+          <line class="edge" x1="490" y1="410" x2="490" y2="434" marker-end="url(#ah2)"/>
+
+          <rect class="n n-llm" x="270" y="442" width="440" height="46" rx="3"/>
+          <text class="t-llm" x="490" y="464" text-anchor="middle">llm.with_structured_output(FindingsBatch)</text>
+          <text class="t-s"   x="490" y="480" text-anchor="middle">schema forbids numeric fields outright</text>
+
+          <line class="edge" x1="490" y1="488" x2="490" y2="512" marker-end="url(#ah2)"/>
+
+          <rect class="n" x="230" y="520" width="520" height="46" rx="3"/>
+          <text class="t"   x="490" y="542" text-anchor="middle">grounding filter</text>
+          <text class="t-s" x="490" y="558" text-anchor="middle">drop source_urls &notin; retrieved_urls &middot; source_tier = min(domain_tier)</text>
+
+          <line class="edge" x1="490" y1="566" x2="490" y2="592" marker-end="url(#ah2)"/>
+          <text class="t-det" x="490" y="610" text-anchor="middle">Finding[] &rarr; state</text>
+
+          <!-- retry arc -->
+          <path class="edge edge-halt" d="M 270 465 L 90 465 L 90 152 L 140 152" marker-end="url(#ah2r)"/>
+          <text class="elabel" x="86" y="120" text-anchor="middle">retry</text>
+          <text class="elabel" x="86" y="134" text-anchor="middle">1s &times; 2&#8319;</text>
+
+          <!-- failure exit -->
+          <path class="edge edge-halt" d="M 710 465 L 800 465 L 800 512" marker-end="url(#ah2r)"/>
+          <rect class="n n-halt" x="700" y="520" width="180" height="46" rx="3"/>
+          <text class="t"   x="790" y="542" text-anchor="middle">FailureNote</text>
+          <text class="t-s" x="790" y="558" text-anchor="middle">branch isolated, run lives</text>
+          <text class="elabel" x="812" y="492">refusal, or</text>
+          <text class="elabel" x="812" y="505">2 retries spent</text>
+        </svg>
