@@ -28,9 +28,70 @@ Two layers:
 The back end is FastAPI + SQLAlchemy (sqlite by default, Postgres via
 `DATABASE_URL`); the front end is Next.js.
 
-[**docs/pipeline.md**](docs/pipeline.md) diagrams the report pipeline in detail:
-the pre-graph selection step, the LangGraph fan-out, every place an LLM is
-called, and how the verifier's verdict is decided.
+## How a report is produced
+
+Everything expensive is decided before the graph is invoked: a cheap search
+probe picks the 3-4 highlight companies, and scores, financials and the macro
+spine are loaded as graph *input*, so the fan-out width is fixed before the
+first branch starts. Teal is deterministic and LLM-free, amber is an LLM
+invocation.
+
+```mermaid
+flowchart TB
+    subgraph pre["BEFORE THE GRAPH — pipeline/run.py, no LLM"]
+        direction LR
+        CE["covered_events<br/>DB or JSON store<br/>de-dup memory"]
+        HP["highlight probe<br/>1 cheap search per ticker<br/>rank → keep 3–4"]
+        SC["scores + financials<br/>techinves DB<br/>whole watchlist"]
+        MS["macro spine<br/>FRED, optional<br/>real numbers"]
+    end
+
+    pre -->|initial_state| INIT
+
+    subgraph lg["LANGGRAPH — StateGraph(ReportState)"]
+        INIT["init<br/>RESET × 4 channels"]
+        FAN{{"fan_out_research<br/>router → one Send() each"}}
+        CO["3–4 × company<br/>highlight_tickers"]
+        MA["10 × macro<br/>MACRO_TOPICS"]
+        RB["research_branch — one shared node fn<br/>search legs → structured extraction · max_concurrency = 6"]
+        SY["synthesis<br/>1 writer call + deterministic inserts"]
+        VE["verifier<br/>rules first, then judge"]
+
+        INIT --> FAN
+        FAN --> CO
+        FAN --> MA
+        CO --> RB
+        MA --> RB
+        RB -->|fan-in via reducers| SY
+        SY --> VE
+    end
+
+    subgraph post["AFTER THE GRAPH — persistence"]
+        direction LR
+        P1["covered_events<br/>skipped when blocked"]
+        P2["resolve + fence<br/>placeholders, score block"]
+        P3["save_draft_report<br/>every verdict, block too"]
+        P4["save_run_summary<br/>tokens, cost, yield floor"]
+    end
+
+    VE -->|verdict + draft| post
+
+    classDef det fill:#E2F0F1,stroke:#0B6A71,stroke-width:1.5px,color:#0b1113
+    classDef llm fill:#F8EEDC,stroke:#9A5D06,stroke-width:1.5px,color:#0b1113
+    classDef plain fill:#FFFFFF,stroke:#8FA1A5,stroke-width:1px,color:#0b1113
+    class CE,HP,SC,MS,P1,P2,P3,P4 det
+    class RB,SY,VE llm
+    class INIT,FAN,CO,MA plain
+```
+
+There is no ReAct loop and no tool calling anywhere in this — search providers
+are called directly from Python on a fixed schedule, and the LLM is reached only
+through structured output for extraction and judging, and a plain call for
+writing.
+
+[**docs/pipeline.md**](docs/pipeline.md) has the rest: one research branch in
+full, the four LLM call sites, the state channels and their reducers, and how
+the verifier's verdict is decided.
 
 ## What it looks like
 
