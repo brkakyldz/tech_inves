@@ -28,6 +28,10 @@ Two layers:
 The back end is FastAPI + SQLAlchemy (sqlite by default, Postgres via
 `DATABASE_URL`); the front end is Next.js.
 
+[**docs/pipeline.md**](docs/pipeline.md) diagrams the report pipeline in detail:
+the pre-graph selection step, the LangGraph fan-out, every place an LLM is
+called, and how the verifier's verdict is decided.
+
 ## What it looks like
 
 The landing page leads with the latest run's headline score and the on-demand
