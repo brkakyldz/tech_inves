@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="640" class="dg" viewBox="0 0 900 640" role="img"
              aria-label="One research branch: two search queries hit Tavily with an Exa fallback while additive legs hit EDGAR full text, IR feeds, EDGAR submissions or the Federal Register; results merge and de-duplicate by URL into the retrieved-urls set, which feeds a structured LLM extraction call and then a grounding filter that drops any citation not in that set; on exception the branch backs off and retries, and on exhaustion records a FailureNote.">
 <style>

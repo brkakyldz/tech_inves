@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="910" class="dg" viewBox="0 0 900 910" role="img"
              aria-label="Top-to-bottom flow: a pre-graph stage loads covered events, selects 3 to 4 highlight tickers with a cheap search probe, loads scores and the macro spine; the LangGraph then runs init, fans out Sends to company and macro research branches, converges on a synthesis LLM call and a verifier; afterwards the run persists covered events, the resolved report and the run summary.">
 <style>
